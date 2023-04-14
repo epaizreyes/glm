@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 cmake_policy(VERSION 3.2)
 
+option(GLM_UNINSTALL "Generate uninstallation target" ON)
 
 file(READ "glm/detail/setup.hpp" GLM_SETUP_FILE)
 string(REGEX MATCH "#define[ ]+GLM_VERSION_MAJOR[ ]+([0-9]+)" _ ${GLM_SETUP_FILE})
@@ -35,7 +36,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 
 endif(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 
-if (NOT TARGET uninstall)
+if (GLM_UNINSTALL)
 configure_file(cmake/cmake_uninstall.cmake.in
                cmake_uninstall.cmake IMMEDIATE @ONLY)
 
